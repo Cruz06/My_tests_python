@@ -18,3 +18,12 @@ def test_change_gradus():
     time.sleep(10)
     ActionChains(driver).drag_and_drop_by_offset(temp_change, 72, 0).perform()
     time.sleep(10)
+
+def test_find_title():
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver.get('https://openweathermap.org/')
+    driver.maximize_window()
+    title_article = driver.find_element(By.XPATH, '/html/body/main/div[13]/div/div[3]/h2')
+    time.sleep(10)
+    title_expect = "Forecast, Current and Historical"
+    assert title_article.text == title_expect
